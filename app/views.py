@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request
 from flask_cors import CORS
+import googlemaps
 app = Flask(__name__)
 CORS(app)
-
+gmaps = googlemaps.Client(key='')
 #app.config.from_object("constants")
 
 @app.route('/')
@@ -15,13 +16,10 @@ def recherche():
     if request.method == 'POST':
         search = request.form.get('search')
 
-        # comprendre search
+        response = gmaps.geocode(search)
 
-        # appel a l'api de google map
-
-        # quand resultat retourner le resultat
         if search:
-            return { 'message': '75001 Paris' }
+            return {'message' : response[0]['formatted_address']}
         else:
             return { "message": "Field 'search' " }, 400
 

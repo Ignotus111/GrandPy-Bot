@@ -14,7 +14,7 @@ $("#target").click(() => {
 });
 
 const mafonctionsuccess = (data, statut) => {
-  $("#chat").prepend("<p> GrandPy Bot : " + data.message + "</p>");
+  $("#chat").prepend("<p> GrandPy Bot : " + data + "</p>");
 
   $("#chat").prepend("<p> Vous : " + $("#name").val() + "</p>");
 
