@@ -24,11 +24,6 @@ recevoir et analyser le contenu du formulaire
     -recupère chaque mot, ne garde que les mots-clés
     -
 
-afficher l'historique de la conversation
-    -
-    -
-    -
-
 interaction avec l'api google map
     -envoyer une requete
     -recuperer reponse
