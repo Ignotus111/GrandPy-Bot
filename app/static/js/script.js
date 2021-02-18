@@ -6,19 +6,23 @@ $("#target").click(() => {
     $.ajax({
       url: "http://localhost:5000/recherche",
       type: "POST",
-      data: 'search=${name}',
+      data: `search=${name}`,
       success: mafonctionsuccess,
-//      error:errorfunc,
     });
   }
 });
 
 const mafonctionsuccess = (data, statut) => {
-  $("#chat").prepend("<p> GrandPy Bot : " + data + "</p>");
+  $("#chat").prepend("<p> GrandPy Bot : " + data.geocode + "</p>");
 
   $("#chat").prepend("<p> Vous : " + $("#name").val() + "</p>");
 
   $("#question").text("Avez-vous un autre endroit ou aller ?")
-};
 
-//const errorfunc =
+
+  };
+
+
+//link https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap
+//&markers=color:blue%7Clabel:S%7C40.702147,-74.015794
+//&key=AIzaSyC9AQ4HpPaEmS10krYP7j3rSChGsnOAYrU

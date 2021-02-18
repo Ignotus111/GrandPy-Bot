@@ -15,11 +15,12 @@ def index():
 def recherche():
     if request.method == 'POST':
         search = request.form.get('search')
-
         response = gmaps.geocode(search)
-
         if search:
-            return {'message' : response[0]['formatted_address']}
+            return {'adress' : response[0]['formatted_address'],
+            'geocode_lat': response[0]['geometry']['location']['lat'],
+            'geocode_lng': response[0]['geometry']['location']['lng']
+            }
         else:
             return { "message": "Field 'search' " }, 400
 
