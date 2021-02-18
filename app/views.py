@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request
-from flask_cors import CORS
 import googlemaps
+
 app = Flask(__name__)
-CORS(app)
-gmaps = googlemaps.Client(key='')
+
+gmaps = googlemaps.Client(key='AIzaSyC9AQ4HpPaEmS10krYP7j3rSChGsnOAYrU')
 #app.config.from_object("constants")
 
 @app.route('/')

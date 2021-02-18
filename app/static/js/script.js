@@ -4,7 +4,7 @@ $("#target").click(() => {
 
   if (name) {
     $.ajax({
-      url: "http://localhost:5000/recherche",
+      url: "/recherche",
       type: "POST",
       data: `search=${name}`,
       success: mafonctionsuccess,
@@ -13,7 +13,7 @@ $("#target").click(() => {
 });
 
 const mafonctionsuccess = (data, statut) => {
-  $("#chat").prepend("<p> GrandPy Bot : " + data.geocode + "</p>");
+  $("#chat").prepend("<p> GrandPy Bot : " + data.address + "</p>");
 
   $("#chat").prepend("<p> Vous : " + $("#name").val() + "</p>");
 
@@ -25,4 +25,4 @@ const mafonctionsuccess = (data, statut) => {
 
 //link https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap
 //&markers=color:blue%7Clabel:S%7C40.702147,-74.015794
-//&key=AIzaSyC9AQ4HpPaEmS10krYP7j3rSChGsnOAYrU
+//&key=
