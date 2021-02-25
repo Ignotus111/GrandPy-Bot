@@ -3,7 +3,7 @@ import googlemaps
 
 app = Flask(__name__)
 
-gmaps = googlemaps.Client(key='AIzaSyC9AQ4HpPaEmS10krYP7j3rSChGsnOAYrU')
+gmaps = googlemaps.Client(key='')
 #app.config.from_object("constants")
 
 @app.route('/')
@@ -17,7 +17,7 @@ def recherche():
         search = request.form.get('search')
         response = gmaps.geocode(search)
         if search:
-            return {'adress' : response[0]['formatted_address'],
+            return {'address' : response[0]['formatted_address'],
             'geocode_lat': response[0]['geometry']['location']['lat'],
             'geocode_lng': response[0]['geometry']['location']['lng']
             }

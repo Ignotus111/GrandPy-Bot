@@ -5,17 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>GranPy Bot</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-  <link
-  rel="stylesheet"
-  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-  crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap/css/bootstrap.min.css')}}">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+  crossorigin=""/>
+
 </head>
 <body>
   <div class="bg-dark">
     <div class="container">
       <div class="row">
-        <div class="col lg-4 md-6">
+        <div class="col lg-4 md-6 text-light">
           <h1>GrandPy Bot</h1>
           <p>Phrase d'accroche Phrase d'accroche Phrase d'accroche Phrase d'accroche Phrase d'accroche</p>
         </div>
@@ -28,20 +28,21 @@
 
   <div class="container">
     <div class="row">
-      <div class="col">
+      <div class="col-12 d-flex justify-content-center">
         <p>Historique de conversation:</p>
-        <div id="chat">
-        </div>
-        <div id="map">
-
-        </div>
+      </div>
+      <div class="d-flex justify-content-center" id="chat">
+        <p>bonjour</p>
+        <p>aurevoir</p>
       </div>
     </div>
   </div>
-  <div class="container">
+  <div class="d-flex justify-content-center">
+    <div id="mapid" class="d-flex justify-content-center"></div>
+  </div>
+  <div class="container ">
     <div class="row">
-      <div class="col">
-        <p id=question >Ou voulez-vous aller ?</p>
+      <div class="col-12 d-flex justify-content-center">
         <input type="text" id="name"/>
         <button id="target">Rechercher</button>
         <div id="response"></div>
@@ -58,10 +59,11 @@
       </div>
     </div>
   </div>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-  integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+  <script src="{{ url_for('static',filename='js/jquery.js')}}"></script>
+  <script src="{{ url_for('static',filename='css/bootstrap/js/bootstrap.min.js')}}"></script>
   <script type="text/javascript" src="{{url_for('static',filename='js/script.js')}}"></script>
 
 </body>
