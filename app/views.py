@@ -16,6 +16,7 @@ def recherche():
     if request.method == 'POST':
         search = request.form.get('search')
         response = gmaps.geocode(search)
+
         if search:
             return {'address' : response[0]['formatted_address'],
             'geocode_lat': response[0]['geometry']['location']['lat'],

@@ -1,1 +1,17 @@
-#mapid { height: 300px; width: 300px; /*display: none;*/}
+#mapid { height: 300px; width: 100%; border: 0.5mm solid grey; margin-top: 5px}
+
+#chat { height: 300px; overflow: auto; padding-top: 15px; border: 1px solid #878787; padding: 10px; background: white; border-radius: 10px; margin-top: 5px;}
+
+.header {
+  background: #303030;
+
+  border: 1.5px solid #000000;
+  border-radius: 0px 0px 3px 3px;
+}
+.footer {
+  background: #EAEAEA;
+  margin-top: 15px;
+  padding-top: 5px;
+  border-top: 1px solid #878787;
+}
+#researchField { padding-top: 15px}

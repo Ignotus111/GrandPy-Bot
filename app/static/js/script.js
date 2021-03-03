@@ -1,4 +1,4 @@
-let mymap = L.map('mapid').setView([51.5, 0.09], 14);
+let mymap = L.map('mapid').setView([48.8751155, 2.3489782], 14);
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
@@ -7,7 +7,9 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     zoomOffset: -1,
 }).addTo(mymap);
 
-$("#target").click(() => {
+let conv = 0
+
+const searching = () => {
   const name = $("#name").val();
 
   if (name) {
@@ -18,13 +20,23 @@ $("#target").click(() => {
       success: mafonctionsuccess,
     });
   }
+};
+
+$("#target").click(searching);
+$("#name").keypress(function(event){
+  var keycode = (event.keyCode ? event.keyCode : event.which);
+  if(keycode == '13'){
+      searching();
+  }
 });
 
 const mafonctionsuccess = (data, statut) => {
+  conv += 1
+  $("#chat").append("<p class='text-info'> Vous : " + $("#name").val() + "</p>");
 
-  $("#chat").append("<p> Vous : " + $("#name").val() + "</p>");
+  $("#chat").append("<p class='text-success' > GrandPy Bot : " + data.address + "</p>");
 
-  $("#chat").append("<p> GrandPy Bot : " + data.address + "</p>");
+  $("#name").val('');
 
   //$("#question").text("Avez-vous un autre endroit ou aller ?");
 

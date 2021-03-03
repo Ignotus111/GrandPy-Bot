@@ -11,16 +11,16 @@
   crossorigin=""/>
 
 </head>
-<body>
-  <div class="bg-dark">
+<body class="bg-light">
+  <div class="header">
     <div class="container">
       <div class="row">
         <div class="col lg-4 md-6 text-light">
           <h1>GrandPy Bot</h1>
-          <p>Phrase d'accroche Phrase d'accroche Phrase d'accroche Phrase d'accroche Phrase d'accroche</p>
+          <h4>Plus puissant qu'un somnifère!</h4>
         </div>
-        <div class="col d-none d-md-block">
-          <img src="{{ url_for('static', filename='logo.png') }}" WIDTH=150 HEIGHT=150 ALT="Logo" />
+        <div class="col d-none d-md-block text-center">
+          <img src="{{ url_for('static', filename='logo.png') }}" WIDTH=100 HEIGHT=100 ALT="Logo" />
         </div>
       </div>
     </div>
@@ -28,29 +28,28 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-12 d-flex justify-content-center">
-        <p>Historique de conversation:</p>
+      <div class="col-12 col-sm-6" id="chatVisualizer">
+        <div id="chat">
+          <p class="text-success">GrandPy Bot : Bonjour mon enfant, quel lieu aimerais-tu mieux connaître ?</p>
+        </div>
       </div>
-      <div class="d-flex justify-content-center" id="chat">
-        <p>bonjour</p>
-        <p>aurevoir</p>
+      <div class="col-12 col-sm-6">
+        <div id="mapid"></div>
       </div>
     </div>
   </div>
-  <div class="d-flex justify-content-center">
-    <div id="mapid" class="d-flex justify-content-center"></div>
-  </div>
+
   <div class="container ">
     <div class="row">
-      <div class="col-12 d-flex justify-content-center">
+      <div class="col-12 col-md-6 d-flex justify-content-center" id="researchField">
         <input type="text" id="name"/>
-        <button id="target">Rechercher</button>
+        <button id="target">Envoyer à GrandPy</button>
         <div id="response"></div>
       </div>
     </div>
   </div>
 
-  <div class="bg-light mt-5">
+  <div class="footer">
     <div class="container">
       <div class="row">
         <div class="col">
