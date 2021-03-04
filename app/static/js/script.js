@@ -17,7 +17,8 @@ const searching = () => {
       url: "/recherche",
       type: "POST",
       data: `search=${name}`,
-      success: mafonctionsuccess,
+      success: successfunc,
+      error: errorfunc
     });
   }
 };
@@ -30,20 +31,16 @@ $("#name").keypress(function(event){
   }
 });
 
-const mafonctionsuccess = (data, statut) => {
+const successfunc = (data, statut) => {
   conv += 1
-  $("#chat").append("<p class='text-info'> Vous : " + $("#name").val() + "</p>");
-
-  $("#chat").append("<p class='text-success' > GrandPy Bot : " + data.address + "</p>");
-
+  $("#chat").append("<p> Vous : " + $("#name").val() + "</p>");
+  $("#chat").append("<p> GrandPy Bot : Voici son adresse : " + data.address + ".</p><p>Mais le savais-tu ? " + data.histoire + ".</p><p>Y aurait-il un autre lieu que tu aimerais connaître davantage ?</p>");
   $("#name").val('');
-
-  //$("#question").text("Avez-vous un autre endroit ou aller ?");
-
-  //$("#mapid").css("display", "block")
-
   mymap.flyTo([data.geocode_lat, data.geocode_lng])
   L.marker([data.geocode_lat, data.geocode_lng]).addTo(mymap).bindPopup(data.address).openPopup();
+};
 
-
-  };
+const errorfunc = (result, statut, error) => {
+  $("#chat").append("<p> Vous : " + $("#name").val() + "</p>");
+  $("#chat").append("<p> GrandPy Bot : Oups! Il y a un petit problème : sois ta phrase est trop compliquée, sois le lieux que tu cherches n'existe pas!")
+};
