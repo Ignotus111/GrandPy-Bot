@@ -1,6 +1,6 @@
 import googlemaps
 from app.apis.constants import STOPWORDS
-from config import GMAP_KEY
+
 
 
 class ApiGoogle:
