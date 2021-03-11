@@ -25,7 +25,8 @@ const searching = () => {
       complete: enablebutton
     });
   } else {
-    enablebutton()
+    $("#target").show();
+    $("#loadbutton").hide();
   }
 };
 
