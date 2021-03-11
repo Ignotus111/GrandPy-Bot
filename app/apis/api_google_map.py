@@ -10,7 +10,7 @@ class ApiGoogle:
         """
         self.place = place.lower()
         self.cleanplace = self.parser()
-        self.key = googlemaps.Client(key=GMAP_KEY)
+        self.key = googlemaps.Client(key=os.environ.get('GMAP_KEY'))
         self.response = self.search()
         self.latitude = self.response[0]['geometry']['location']['lat']
         self.longitude = self.response[0]['geometry']['location']['lng']
