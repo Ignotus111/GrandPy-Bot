@@ -11,11 +11,12 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 
 // Takes name value from html and send it to /research
 const searching = () => {
-  $("#target").hide()
-  $("#loadbutton").show()
   const name = $("#name").val();
 
   if (name) {
+    $("#name").prop('disabled', true)
+    $("#target").hide()
+    $("#loadbutton").show()
     $.ajax({
       url: "/research",
       type: "POST",
@@ -24,9 +25,6 @@ const searching = () => {
       error: errorfunc,
       complete: enablebutton
     });
-  } else {
-    $("#target").show();
-    $("#loadbutton").hide();
   }
 };
 
@@ -38,9 +36,6 @@ $("#name").keypress((event) =>{
   const keycode = (event.keyCode ? event.keyCode : event.which);
   if(keycode == '13'){
       searching();
-      $("#name").prop('disabled', true)
-      $("#target").hide()
-      $("#loadbutton").show()
   }
 });
 
