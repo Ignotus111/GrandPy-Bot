@@ -24,6 +24,8 @@ const searching = () => {
       error: errorfunc,
       complete: enablebutton
     });
+  } else {
+    enablebutton()
   }
 };
 
