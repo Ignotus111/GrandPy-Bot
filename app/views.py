@@ -1,31 +1,33 @@
 from flask import Flask, render_template, request
-from app.tests.func import wiki_api
-import googlemaps
-
+from app.apis.api_wiki_media import ApiWiki
+from app.apis.api_google_map import ApiGoogle
 app = Flask(__name__)
 
-gmaps = googlemaps.Client(key='')
-#app.config.from_object("constants")
 
 @app.route('/')
 @app.route('/index/')
 def index():
+    """
+    When index page is call, render html template.
+    """
     return render_template("index.html")
 
-@app.route('/recherche', methods=['POST'])
-def recherche():
+
+@app.route('/research', methods=['POST'])
+def research():
+    """
+    When research is called, take script.js data, creates ApiGoogle object with
+    it then an ApiWiki object then return wanted params.
+    """
     if request.method == 'POST':
         search = request.form.get('search')
-        response = gmaps.geocode(search)
-        histoire = wiki_api(search)
+        answer = ApiGoogle(search)
+        story = ApiWiki(answer.wiki)
         if search:
-            return {'address' : response[0]['formatted_address'],
-            'geocode_lat': response[0]['geometry']['location']['lat'],
-            'geocode_lng': response[0]['geometry']['location']['lng'],
-            'histoire': histoire
-            }
+            return {'address': answer.address,
+                    'geocode_lat': answer.latitude,
+                    'geocode_lng': answer.longitude,
+                    'story': story.result
+                    }
         else:
-            return { "message": "Field 'search' " }, 400
-
-#if __name__ == "__main__":
-#    app.run()
+            return {"message": "Field 'search' "}, 400
