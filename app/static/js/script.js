@@ -11,6 +11,8 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 
 // Takes name value from html and send it to /research
 const searching = () => {
+  $("#target").hide()
+  $("#loadbutton").show()
   const name = $("#name").val();
 
   if (name) {
@@ -19,7 +21,8 @@ const searching = () => {
       type: "POST",
       data: `search=${name}`,
       success: successfunc,
-      error: errorfunc
+      error: errorfunc,
+      complete: enablebutton
     });
   }
 };
@@ -28,9 +31,13 @@ const searching = () => {
 $("#target").click(searching);
 //When a key is pressed, if it it 'enter', calls searching function
 $("#name").keypress((event) =>{
+
   const keycode = (event.keyCode ? event.keyCode : event.which);
   if(keycode == '13'){
       searching();
+      $("#name").prop('disabled', true)
+      $("#target").hide()
+      $("#loadbutton").show()
   }
 });
 
@@ -56,4 +63,11 @@ const successfunc = (data) => {
 const errorfunc = (result, statut, error) => {
   $("#chat").append("<p> Vous : " + $("#name").val() + "</p>");
   $("#chat").append("<p> GrandPy Bot : Oups! Il y a un petit problème : sois ta phrase est trop compliquée, sois le lieu que tu cherches n'existe pas!")
+};
+
+const enablebutton = () => {
+  $("#target").show()
+  $("#loadbutton").hide()
+  $("#name").prop('disabled', false)
+
 };

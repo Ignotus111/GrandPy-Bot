@@ -1,11 +1,11 @@
 import requests
-from app.apis.constants import STOPWORDS
+from app.apis.parsefunc import parser
 
 
 class ApiWiki():
     def __init__(self, searchpage):
         self.searchpage = searchpage.lower()
-        self.cleansearch = self.parser()
+        self.cleansearch = parser(self.searchpage)
         self.session = requests.Session()
         self.url = "https://fr.wikipedia.org/w/api.php"
         self.pageparams = {
@@ -43,43 +43,3 @@ class ApiWiki():
             return self.searchrequest['query']['pages'][0]['extract']
         except KeyError:
             return "Ma mémoire me joue des tours! Je n'ai rien à te raconter sur ce lieu."
-
-    def parser(self):
-        current_word = ""
-        list_of_word = []
-        placelengh = len(self.searchpage)
-        clean = []
-        for lengh, elem in enumerate(self.searchpage):
-            if lengh == placelengh - 1:
-                if elem.isalpha():
-                    current_word = current_word + elem
-                    list_of_word.append(current_word)
-                    current_word = ""
-                else:
-                    list_of_word.append(current_word)
-                    current_word = ""
-            else:
-                if elem.isalpha():
-                    current_word = current_word + elem
-                elif elem == " ":
-                    elem = ""
-                    current_word = current_word + elem
-                    list_of_word.append(current_word)
-                    current_word = ""
-                elif elem == "'":
-                    current_word = current_word + elem
-                elif elem == '-':
-                    elem = ""
-                    current_word = current_word + elem
-                    list_of_word.append(current_word)
-                    current_word = ""
-                else:
-                    pass
-        for elem in list_of_word:
-            if elem not in STOPWORDS:
-                clean.append(elem)
-            else:
-                pass
-        separator = " "
-        clean = separator.join(clean)
-        return clean
