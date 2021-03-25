@@ -1,10 +1,7 @@
-import os,sys,inspect
-currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-parentdir = os.path.dirname(currentdir)
-sys.path.insert(0,parentdir)
-from api_google_map import ApiGoogle
-from api_media_wiki import ApiWiki
-from parsefunc import parser
+
+from app.apis.api_google_map import ApiGoogle
+from app.apis.api_media_wiki import ApiWiki
+from app.apis.parsefunc import parser
 
 testgoogle = ApiGoogle("Où est la mairie de Rouen ?")
 testwiki = ApiWiki(testgoogle.wiki)
