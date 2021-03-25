@@ -22,4 +22,4 @@ class ApiGoogle:
         """
         Using Google Geocode API
         """
-        self.key.geocode(self.cleanplace)
+        return self.key.geocode(self.cleanplace)
