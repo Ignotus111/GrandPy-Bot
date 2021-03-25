@@ -4,7 +4,7 @@ from app.apis.parsefunc import parser
 
 class ApiWiki():
     def __init__(self, searchpage):
-        self.searchpage = searchpage.lower()
+        self.searchpage = searchpage
         self.cleansearch = parser(self.searchpage)
         self.session = requests.Session()
         self.url = "https://fr.wikipedia.org/w/api.php"

@@ -1,4 +1,5 @@
 from app.apis.constants import STOPWORDS
+#from constants import STOPWORDS
 
 
 def parser(textToParse):
@@ -9,7 +10,7 @@ def parser(textToParse):
     And eventually join all the left words in one string.
     """
     clean = []
-    cleantext = textToParse.replace(",", " ").replace("!", " ").replace(".", " ").replace("?", " ").replace(";", " ")
+    cleantext = textToParse.lower().replace(",", " ").replace("!", " ").replace(".", " ").replace("?", " ").replace(";", " ").replace("'", " ").replace(":"," ")
     splitedText = cleantext.split()
     for elem in splitedText:
         if elem not in STOPWORDS:

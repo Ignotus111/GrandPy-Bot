@@ -1,7 +1,7 @@
 import os
 import googlemaps
 from app.apis.parsefunc import parser
-# when localhosting: from config import GMAP_KEY
+#from config import GMAP_KEY
 
 
 class ApiGoogle:
@@ -9,7 +9,7 @@ class ApiGoogle:
         """
         Changing uppercase into lowercase
         """
-        self.place = place.lower()
+        self.place = place
         self.cleanplace = parser(self.place)
         self.key = googlemaps.Client(key=os.environ.get('GMAP_KEY'))
         self.response = self.search()
