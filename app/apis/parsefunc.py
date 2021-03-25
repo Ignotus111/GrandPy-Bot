@@ -1,7 +1,5 @@
 from app.apis.constants import STOPWORDS
 
-# from constants import STOPWORDS
-
 
 def parser(textToParse):
     """

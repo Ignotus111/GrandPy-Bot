@@ -2,7 +2,7 @@ import requests
 from app.apis.parsefunc import parser
 
 
-class ApiWiki():
+class ApiWiki:
     def __init__(self, searchpage):
         self.searchpage = searchpage
         self.cleansearch = parser(self.searchpage)
@@ -12,12 +12,14 @@ class ApiWiki():
             "action": "query",
             "list": "search",
             "srsearch": self.cleansearch,
-            "format": "json"
+            "format": "json",
         }
         """
         Searching all results from user request.
         """
-        self.pagerequest = (self.session.get(url=self.url, params=self.pageparams)).json()
+        self.pagerequest = (
+            self.session.get(url=self.url, params=self.pageparams)
+        ).json()
         """
         Takes the first result, get its page id (pageids) and then makes a
         request of the page.
@@ -26,12 +28,14 @@ class ApiWiki():
             "action": "query",
             "prop": "extracts",
             "exsentences": "3",
-            "pageids": self.pagerequest['query']['search'][0]['pageid'],
+            "pageids": self.page_exist(),
             "explaintext": "1",
             "formatversion": "2",
-            "format": "json"
+            "format": "json",
         }
-        self.searchrequest = (self.session.get(url=self.url, params=self.searchparams)).json()
+        self.searchrequest = (
+            self.session.get(url=self.url, params=self.searchparams)
+        ).json()
         self.result = self.result()
 
     def result(self):
@@ -40,6 +44,18 @@ class ApiWiki():
         error.
         """
         try:
-            return self.searchrequest['query']['pages'][0]['extract']
+            return self.searchrequest["query"]["pages"][0]["extract"]
         except KeyError:
-            return "Ma mémoire me joue des tours! Je n'ai rien à te raconter sur ce lieu."
+            return (
+                "Ma mémoire me joue des tours! Je n'ai rien à te raconter sur ce lieu."
+            )
+    def page_exist(self):
+        """
+        Return a error if research gives no response
+        """
+        try :
+            return self.pagerequest["query"]["search"][0]["pageid"]
+        except IndexError:
+            return (
+                "Ma mémoire me joue des tours! Je n'ai rien à te raconter sur ce lieu."
+            )
