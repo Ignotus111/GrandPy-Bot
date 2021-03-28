@@ -1,7 +1,7 @@
 import os
 import googlemaps
 from app.apis.parsefunc import parser
-#from config import GMAP_KEY
+from config import GMAP_KEY
 
 
 class ApiGoogle:

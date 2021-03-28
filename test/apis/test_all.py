@@ -1,6 +1,5 @@
 from app.apis.api_google_map import ApiGoogle
 from app.apis.api_wiki_media import ApiWiki
-from app.apis.parsefunc import parser
 
 
 def test_all():

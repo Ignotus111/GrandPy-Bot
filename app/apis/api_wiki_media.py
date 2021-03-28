@@ -49,11 +49,12 @@ class ApiWiki:
             return (
                 "Ma mémoire me joue des tours! Je n'ai rien à te raconter sur ce lieu."
             )
+
     def page_exist(self):
         """
         Return a error if research gives no response
         """
-        try :
+        try:
             return self.pagerequest["query"]["search"][0]["pageid"]
         except IndexError:
             return (
